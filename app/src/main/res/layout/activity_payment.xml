@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/payment_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Payment Data"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_marginBottom="40dp"/>
+    <EditText
+        android:id="@+id/payment_mode"
+        android:layout_below="@+id/payment_heading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Mode of payment"/>
+    <Button
+        android:id="@+id/payment_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:layout_below="@id/payment_mode"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"/>
+
+</RelativeLayout>
