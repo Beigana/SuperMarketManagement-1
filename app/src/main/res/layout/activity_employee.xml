@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+<RelativeLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/emploayee_heading"
+        android:layout_width="match_parent"
+        android:text="Employee Details"
+        android:textStyle="bold"
+        android:textSize="22dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="40dp"/>
+
+    <EditText
+        android:id="@+id/emploayee_fname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/emploayee_heading"
+        android:hint="First Name"
+        android:maxLines="1"
+        android:layout_marginBottom="5dp"
+        />
+
+    <EditText
+        android:id="@+id/emploayee_lname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/emploayee_fname"
+        android:hint="Last Name"
+        android:maxLines="1"
+        android:layout_marginBottom="5dp"
+        />
+    <EditText
+        android:id="@+id/emploayee_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/emploayee_lname"
+        android:hint="Email"
+        android:maxLines="1"
+        android:layout_marginBottom="5dp"
+        />
+    <EditText
+        android:id="@+id/emploayee_mobile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/emploayee_email"
+        android:hint="Mobile"
+        android:maxLines="1"
+        android:inputType="number"
+        android:maxLength="10"
+        android:layout_marginBottom="5dp"
+        />
+    <EditText
+        android:id="@+id/emploayee_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/emploayee_mobile"
+        android:hint="Address"
+        android:layout_marginBottom="5dp"
+        />
+    <EditText
+        android:id="@+id/emploayee_gender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/emploayee_address"
+        android:hint="Gender (M/F)"
+        android:maxLines="1"
+        android:inputType="text"
+        android:maxLength="1"
+        android:layout_marginBottom="5dp"
+        />
+    <EditText
+        android:id="@+id/emploayee_salary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/emploayee_gender"
+        android:hint="Salary(in rupees Ex: 98000)"
+        android:inputType="number"
+        android:maxLength="10"
+        android:maxLines="1"
+        android:layout_marginBottom="5dp"
+        />
+    <EditText
+        android:id="@+id/emploayee_manager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/emploayee_salary"
+        android:hint="Manager ID (optional)"
+        android:maxLines="1"
+        android:inputType="number"
+        android:maxLength="6"
+        android:layout_marginBottom="5dp"
+        />
+    <EditText
+        android:id="@+id/emploayee_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/emploayee_manager"
+        android:hint="Section ID(optional)"
+        android:maxLines="1"
+        android:layout_marginBottom="5dp"
+        />
+    <Button
+        android:id="@+id/emploayee_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/emploayee_section"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Submit"/>
+
+</RelativeLayout>
+</ScrollView>

@@ -28,6 +28,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         new PaymentTable(sqLiteDatabase);                   //Create table payment
+        new EmployeeTable(sqLiteDatabase);
     }
 
     @Override
@@ -46,6 +47,29 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             ContentValues contentValues = new ContentValues();
             contentValues.put(keyPayment.getMode(),paymentTable.getMode());
             sqLiteDatabase.insert(keyPayment.getTableName(), null, contentValues);
+            return true;
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public boolean addEmployeeData(EmployeeTable employeeTable)
+    {
+        try {
+            EmployeeTable keyEmployee = new EmployeeTable();
+            SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(keyEmployee.getFname(),employeeTable.getFname());
+            contentValues.put(keyEmployee.getLname(),employeeTable.getLname());
+            contentValues.put(keyEmployee.getEmail(),employeeTable.getEmail());
+            contentValues.put(keyEmployee.getMobile(),employeeTable.getMobile());
+            contentValues.put(keyEmployee.getAddress(),employeeTable.getAddress());
+            contentValues.put(keyEmployee.getGender(),employeeTable.getGender());
+            contentValues.put(keyEmployee.getSalary(),employeeTable.getSalary());
+            contentValues.put(keyEmployee.getSuper_id(),employeeTable.getSuper_id());
+            sqLiteDatabase.insert(keyEmployee.getTableName(), null, contentValues);
             return true;
         }
         catch(Exception e)

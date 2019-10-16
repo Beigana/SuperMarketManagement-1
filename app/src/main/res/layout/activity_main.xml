@@ -22,4 +22,11 @@
         android:text="Add Payment Info"
         android:layout_below="@+id/main_heading"/>
 
+    <Button
+        android:id="@+id/main_employee_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Employee         "
+        android:layout_below="@+id/main_payment_button"/>
+
 </RelativeLayout>

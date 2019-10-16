@@ -15,12 +15,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private DataBaseHelper dataBaseHelper;
     private Button mpayment;
+    private Button memployee;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mpayment=findViewById(R.id.main_payment_button);
         mpayment.setOnClickListener(this);
+        memployee=findViewById(R.id.main_employee_button);
+        memployee.setOnClickListener(this);
 
         /*DataBaseHelper dataBaseHelper=DataBaseHelper.getInstance(this);
         PaymentTable paymentTable=new PaymentTable("electonic");
@@ -37,6 +40,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(view.getId()==mpayment.getId())
         {
             Intent intent =new Intent(this,PaymentActivity.class);
+            startActivity(intent);
+        }
+        if(view.getId()==memployee.getId())
+        {
+            Intent intent =new Intent(this,EmployeeActivity.class);
             startActivity(intent);
         }
 
