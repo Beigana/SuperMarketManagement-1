@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <RelativeLayout android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/customer_heading"
+            android:layout_width="match_parent"
+            android:text="Customer Details"
+            android:textStyle="bold"
+            android:textSize="22dp"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="40dp"/>
+
+        <EditText
+            android:id="@+id/customer_fname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/customer_heading"
+            android:hint="First Name"
+            android:maxLines="1"
+            android:layout_marginBottom="5dp"
+            />
+
+        <EditText
+            android:id="@+id/customer_lname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/customer_fname"
+            android:hint="Last Name"
+            android:maxLines="1"
+            android:layout_marginBottom="5dp"
+            />
+        <EditText
+            android:id="@+id/customer_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/customer_lname"
+            android:hint="Email"
+            android:maxLines="1"
+            android:layout_marginBottom="5dp"
+            />
+        <EditText
+            android:id="@+id/customer_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/customer_email"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:layout_marginBottom="5dp"
+            />
+        <EditText
+            android:id="@+id/customer_mobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/customer_password"
+            android:hint="Mobile"
+            android:maxLines="1"
+            android:inputType="number"
+            android:maxLength="10"
+            android:layout_marginBottom="5dp"
+            />
+        <EditText
+            android:id="@+id/customer_dob"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/customer_mobile"
+            android:hint="DOB"
+            android:layout_marginBottom="5dp"
+            />
+        <EditText
+            android:id="@+id/customer_gender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/customer_dob"
+            android:hint="Gender (M/F)"
+            android:maxLines="1"
+            android:inputType="text"
+            android:maxLength="1"
+            android:layout_marginBottom="5dp"
+            />
+        <!--<EditText
+            android:id="@+id/customer_salary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/customer_gender"
+            android:hint="Salary(in rupees Ex: 98000)"
+            android:inputType="number"
+            android:maxLength="10"
+            android:maxLines="1"
+            android:layout_marginBottom="5dp"
+            />
+        <EditText
+            android:id="@+id/customer_manager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/customer_salary"
+            android:hint="Manager ID (optional)"
+            android:maxLines="1"
+            android:inputType="number"
+            android:maxLength="6"
+            android:layout_marginBottom="5dp"
+            />
+        <EditText
+            android:id="@+id/emploayee_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/emploayee_manager"
+            android:hint="Section ID(optional)"
+            android:maxLines="1"
+            android:layout_marginBottom="5dp"
+            />-->
+        <Button
+            android:id="@+id/customer_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/customer_gender"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="Submit"/>
+
+    </RelativeLayout>
+</ScrollView>

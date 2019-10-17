@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.mansoor.supermarketmanagement.Database.CustomerTable;
 import com.mansoor.supermarketmanagement.Database.DataBaseHelper;
 import com.mansoor.supermarketmanagement.Database.PaymentTable;
 
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private DataBaseHelper dataBaseHelper;
     private Button mpayment;
     private Button memployee;
+    private Button mcustomer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +26,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mpayment.setOnClickListener(this);
         memployee=findViewById(R.id.main_employee_button);
         memployee.setOnClickListener(this);
+        mcustomer=findViewById(R.id.main_customer_button);
+        mcustomer.setOnClickListener(this);
 
         /*DataBaseHelper dataBaseHelper=DataBaseHelper.getInstance(this);
         PaymentTable paymentTable=new PaymentTable("electonic");
@@ -47,6 +51,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent =new Intent(this,EmployeeActivity.class);
             startActivity(intent);
         }
+        if(view.getId()==mcustomer.getId())
+        {
+            Intent intent =new Intent(this, CustomerLoginActivity.class);
+            startActivity(intent);
+        }
+
+
 
     }
 }

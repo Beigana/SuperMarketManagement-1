@@ -2,6 +2,7 @@ package com.mansoor.supermarketmanagement.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -29,6 +30,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         new PaymentTable(sqLiteDatabase);                   //Create table payment
         new EmployeeTable(sqLiteDatabase);
+        new CustomerTable(sqLiteDatabase);
     }
 
     @Override
@@ -78,7 +80,35 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
         return false;
     }
+    public boolean addCustomerData(CustomerTable customerTable)
+    {
+        try {
+            CustomerTable keyCustomer = new CustomerTable();
+            SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(keyCustomer.getFname(),customerTable.getFname());
+            contentValues.put(keyCustomer.getLname(),customerTable.getLname());
+            contentValues.put(keyCustomer.getEmail(),customerTable.getEmail());
+            contentValues.put(keyCustomer.getPassword(),customerTable.getPassword());
+            contentValues.put(keyCustomer.getMobile(),customerTable.getMobile());
+            contentValues.put(keyCustomer.getDob(),customerTable.getDob());
+            contentValues.put(keyCustomer.getGender(),customerTable.getGender());
+            sqLiteDatabase.insert(keyCustomer.getTableName(), null, contentValues);
+            return true;
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
+    //Display data :
+    public Cursor getDataFromCustomerTable()
+    {
+        SQLiteDatabase sqLiteDatabase=getReadableDatabase();
+        return sqLiteDatabase.rawQuery("SELECT * FROM customer",null);
+    }
 
 
 }

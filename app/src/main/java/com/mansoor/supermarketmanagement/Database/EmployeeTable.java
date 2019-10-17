@@ -35,7 +35,8 @@ public class EmployeeTable {
         sqLiteDatabase.execSQL(sql);
     }
 
-    public EmployeeTable(String fname, String lname, String email, String mobile, String address, String gender, String salary, String super_id) {
+    public EmployeeTable(String fname, String lname, String email, String mobile, String address, String gender, String salary, String super_id)
+    {
         this.fname = fname;
         this.lname = lname;
         this.email = email;
