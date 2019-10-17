@@ -47,6 +47,7 @@ public class EmployeeActivity extends AppCompatActivity implements View.OnClickL
         {
             DataBaseHelper dataBaseHelper=DataBaseHelper.getInstance(this);
             EmployeeTable employeeTable=new EmployeeTable(mfname.getText().toString(),mlname.getText().toString(),memail.getText().toString(),mmobile.getText().toString(),maddress.getText().toString(),mgender.getText().toString(),msalary.getText().toString(),msuper_id.getText().toString(),msec_id.getText().toString());
+            //employeeTable.setSuper_id(msuper_id.getText().toString());
             if(dataBaseHelper.addEmployeeData(employeeTable))
             {
                 Toast.makeText(this, "Employee Details added successfull!!", Toast.LENGTH_SHORT).show();

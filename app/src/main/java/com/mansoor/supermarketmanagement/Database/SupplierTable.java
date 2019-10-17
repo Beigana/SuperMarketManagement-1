@@ -11,6 +11,7 @@ public class SupplierTable {
     private String mobile = "mobile";
     private String email = "email";
     private String address = "address";
+    private String password = "password";
 
     public SupplierTable() {
 
@@ -23,17 +24,19 @@ public class SupplierTable {
                 lname+" VARCHAR(30) NOT NULL,"+
                 email+" VARCHAR(30) NOT NULL UNIQUE,"+
                 address+" VARCHAR(80),"+
-                mobile+" VARCHAR(10) NOT NULL"+
+                mobile+" VARCHAR(10) NOT NULL,"+
+                password+" VARCHAR(30) NOT NULL"+
                 ");";
         sqLiteDatabase.execSQL(sql);
     }
 
-    public SupplierTable(String fname, String lname, String mobile, String email, String address) {
+    public SupplierTable(String fname, String lname, String email, String address,String mobile,String password) {
         this.fname = fname;
         this.lname = lname;
         this.mobile = mobile;
         this.email = email;
         this.address = address;
+        this.password=password;
     }
 
     public String getTableName() {
@@ -82,5 +85,13 @@ public class SupplierTable {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

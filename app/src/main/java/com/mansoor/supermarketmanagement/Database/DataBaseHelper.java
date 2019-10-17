@@ -73,6 +73,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             contentValues.put(keyEmployee.getGender(),employeeTable.getGender());
             contentValues.put(keyEmployee.getSalary(),employeeTable.getSalary());
             contentValues.put(keyEmployee.getSuper_id(),employeeTable.getSuper_id());
+            contentValues.put(keyEmployee.getSec_id(),employeeTable.getSec_id());
             sqLiteDatabase.insert(keyEmployee.getTableName(), null, contentValues);
             return true;
         }
@@ -121,18 +122,18 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
         return false;
     }
-    public boolean addSupplierDetails(SupplierTable supplierTable) {
+    public boolean addSupplierData(SupplierTable supplierTable) {
         try {
             SupplierTable keySupplierTable = new SupplierTable();
             SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
 
             ContentValues contentValues = new ContentValues();
-            contentValues.put(keySupplierTable.getSupp_id(), supplierTable.getSupp_id());
             contentValues.put(keySupplierTable.getFname(), supplierTable.getFname());
             contentValues.put(keySupplierTable.getLname(), supplierTable.getLname());
-            contentValues.put(keySupplierTable.getMobile(), supplierTable.getMobile());
             contentValues.put(keySupplierTable.getEmail(), supplierTable.getEmail());
             contentValues.put(keySupplierTable.getAddress(), supplierTable.getAddress());
+            contentValues.put(keySupplierTable.getMobile(), supplierTable.getMobile());
+            contentValues.put(keySupplierTable.getPassword(),supplierTable.getPassword());
             sqLiteDatabase.insert(keySupplierTable.getTableName(),null, contentValues);
             return true;
         }
@@ -141,14 +142,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
         return false;
     }
-
-
-
-
-
-
-
-
     //Display data :
     public Cursor getDataFromCustomerTable()        //only create getdata for customer no need to create other getdata table
     {
@@ -173,19 +166,51 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public boolean populateTable(Context context)
     {
         DataBaseHelper dataBaseHelper=DataBaseHelper.getInstance(context);
+        //populating Suppliers table
+        if(!dataBaseHelper.addSupplierData(new SupplierTable("Manohar","Yadav","manohar@gmail.com","Ujjain","9858965748","qwerty1")))
+            return  false;
+        if(!dataBaseHelper.addSupplierData(new SupplierTable("Rohit","Sharma","rohit12345@gmail.com","Indore","8958965458","qwerty2")))
+            return  false;
+        if(!dataBaseHelper.addSupplierData(new SupplierTable("Surjeet","Patel","surjeet@gmail.com","Lucknow","9858785896","qwerty3")))
+            return  false;
         //populating section table
         SectionTable sectionTable=new SectionTable("Stationary","");
         if(!dataBaseHelper.addSectionData(sectionTable))
         {
             return  false;
         }
-       //populating employee table
+        if(!dataBaseHelper.addSectionData(new SectionTable("Garments","")))     //section_id=2
+            return  false;
+        if(!dataBaseHelper.addSectionData(new SectionTable("Laptops","1")))     //section_id=3
+            return  false;
+        if(!dataBaseHelper.addSectionData(new SectionTable("Mobiles","4")))     //section_id=4
+            return  false;
 
-        EmployeeTable employeeTable=new EmployeeTable("Sanjay","Sharma","sanjay@gmail.com","7859857869","siyaganj","M","450000","","1");
+
+       //populating employee table
+        EmployeeTable employeeTable=new EmployeeTable("Sanjay","Sharma","sanjay@gmail.com","7859857869","Indore","M","450000","","1");
         if(!dataBaseHelper.addEmployeeData(employeeTable))
         {
             return false;
         }
+        if(!dataBaseHelper.addEmployeeData(new EmployeeTable("Mohan","Verma","mohan@gmail.com","9858545256","Kolkata","M","850000","1","1")))
+        {
+            return false;
+        }
+        if(!dataBaseHelper.addEmployeeData(new EmployeeTable("Shilpa","Agarwal","shilpa123@gmail.com","8597858964","Mumbai","F","750000","","2")))
+        {
+            return false;
+        }
+
+        if(!dataBaseHelper.addEmployeeData(new EmployeeTable("Malini","Roy","malini198@gmail.com","85895652589","Indore","F","758000","","4")))
+        {
+            return false;
+        }
+
+        //populating stock table
+
+
+
 
         return true;
     }
