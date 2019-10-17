@@ -13,7 +13,7 @@ public class EmployeeTable {
     private String gender="gender";
     private String salary="salary";
     private String super_id="super_id";
-    //private String sec_id="sec_id";
+    private String sec_id="sec_id";
 
     public EmployeeTable()
     {
@@ -29,13 +29,13 @@ public class EmployeeTable {
                 address+" VARCHAR(80),"+
                 gender+" CHAR CHECK (gender IN ('F','M')),"+
                 salary+" FLOAT CHECK (salary>0),"+
-                super_id+" INTEGER(6) REFERENCES employee(emp_id) ON DELETE SET NULL ON UPDATE CASCADE"+
-                /*sec_id+" INTEGER(6)  NOT NULL REFERENCES section(sec_id) ON DELETE SET NULL ON UPDATE CASCADE"+*/
+                super_id+" INTEGER(6) REFERENCES employee(emp_id) ON DELETE SET NULL ON UPDATE CASCADE,"+
+                sec_id+" INTEGER(6)  NOT NULL REFERENCES section(sec_id) ON DELETE SET NULL ON UPDATE CASCADE"+
                 ");";
         sqLiteDatabase.execSQL(sql);
     }
 
-    public EmployeeTable(String fname, String lname, String email, String mobile, String address, String gender, String salary, String super_id)
+    public EmployeeTable(String fname, String lname, String email, String mobile, String address, String gender, String salary, String super_id,String sec_id)
     {
         this.fname = fname;
         this.lname = lname;
@@ -45,6 +45,7 @@ public class EmployeeTable {
         this.gender = gender;
         this.salary = salary;
         this.super_id = super_id;
+        this.sec_id = sec_id;
     }
 
     public String getTableName() {
@@ -115,11 +116,11 @@ public class EmployeeTable {
         this.super_id = super_id;
     }
 
-    /*public String getSec_id() {
+    public String getSec_id() {
         return sec_id;
     }
 
     public void setSec_id(String sec_id) {
         this.sec_id = sec_id;
-    }*/
+    }
 }

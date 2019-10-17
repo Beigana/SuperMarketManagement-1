@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:scrollbars="none">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        tools:context=".RegisterActivity">
+
+        <TextView
+            android:id="@+id/product_info_heading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Product Details"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="50dp"
+            />
+
+        <LinearLayout
+            android:id="@+id/product_info_linear1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/product_info_heading"
+            android:layout_marginBottom="20dp">
+            <TextView
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:text="Product ID:"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/product_info_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Product ID"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/product_info_linear2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/product_info_linear1"
+            android:layout_marginBottom="20dp">
+            <TextView
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:text="Name:"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/product_info_productname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Product Name"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/product_info_linear3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/product_info_linear2"
+            android:layout_marginBottom="20dp">
+            <TextView
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:text="Price:"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/product_info_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Product Price"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/product_info_linear4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/product_info_linear3"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:text="Description:"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
+            <TextView
+                android:id="@+id/product_info_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Product Description"/>
+        </LinearLayout>
+        <Button
+            android:id="@+id/product_info_buyproduct_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/product_info_linear4"
+            android:layout_centerHorizontal="true"
+            android:text="Add to Cart"
+            android:layout_marginTop="40dp"/>
+
+
+    </RelativeLayout>
+</ScrollView>

@@ -19,20 +19,33 @@
         android:id="@+id/main_payment_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Payment Info"
+        android:text="Supplier Section         "
         android:layout_below="@+id/main_heading"/>
 
     <Button
         android:id="@+id/main_employee_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Employee         "
+        android:text="Employee Section        "
         android:layout_below="@+id/main_payment_button"/>
     <Button
         android:id="@+id/main_customer_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Employee         "
+        android:text="Customer Section       "
         android:layout_below="@+id/main_employee_button"/>
+    <Button
+        android:id="@+id/main_populate_table"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="Populate Table           "
+        android:layout_below="@+id/main_customer_button"/>
+    <Button
+        android:id="@+id/main_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout                              "
+        android:layout_below="@+id/main_populate_table"/>
 
 </RelativeLayout>

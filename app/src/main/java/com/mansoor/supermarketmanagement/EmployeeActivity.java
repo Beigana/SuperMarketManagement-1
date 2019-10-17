@@ -23,7 +23,7 @@ public class EmployeeActivity extends AppCompatActivity implements View.OnClickL
     private EditText msalary;
     private EditText msuper_id;
     private Button mbutton;
-    //private EditText msec_id;
+    private EditText msec_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +36,7 @@ public class EmployeeActivity extends AppCompatActivity implements View.OnClickL
         mgender=findViewById(R.id.emploayee_gender);
         msalary=findViewById(R.id.emploayee_salary);
         msuper_id=findViewById(R.id.emploayee_manager);
+        msec_id=findViewById(R.id.emploayee_section);
         mbutton=findViewById(R.id.emploayee_button);
         mbutton.setOnClickListener(this);
     }
@@ -45,7 +46,7 @@ public class EmployeeActivity extends AppCompatActivity implements View.OnClickL
         if(view.getId()==mbutton.getId())
         {
             DataBaseHelper dataBaseHelper=DataBaseHelper.getInstance(this);
-            EmployeeTable employeeTable=new EmployeeTable(mfname.getText().toString(),mlname.getText().toString(),memail.getText().toString(),mmobile.getText().toString(),maddress.getText().toString(),mgender.getText().toString(),msalary.getText().toString(),msuper_id.getText().toString());
+            EmployeeTable employeeTable=new EmployeeTable(mfname.getText().toString(),mlname.getText().toString(),memail.getText().toString(),mmobile.getText().toString(),maddress.getText().toString(),mgender.getText().toString(),msalary.getText().toString(),msuper_id.getText().toString(),msec_id.getText().toString());
             if(dataBaseHelper.addEmployeeData(employeeTable))
             {
                 Toast.makeText(this, "Employee Details added successfull!!", Toast.LENGTH_SHORT).show();

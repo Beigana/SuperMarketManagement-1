@@ -2,11 +2,15 @@ package com.mansoor.supermarketmanagement.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+
+import com.mansoor.supermarketmanagement.MainActivity;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
@@ -28,19 +32,17 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        new PaymentTable(sqLiteDatabase);                   //Create table payment
-        new EmployeeTable(sqLiteDatabase);
+        new PaymentTable(sqLiteDatabase);            //Create table payment
         new CustomerTable(sqLiteDatabase);
+        new EmployeeTable(sqLiteDatabase);
+        new SectionTable(sqLiteDatabase);
+        new StockTable(sqLiteDatabase);
+        new ProductTable(sqLiteDatabase);
+        new SupplierTable(sqLiteDatabase);
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
-    }
-    public void getSQLiteWriteablepermission()
-    {
-        SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
-    }
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) { }
     public boolean addPaymentData(PaymentTable paymentTable)
     {
         try {
@@ -80,6 +82,23 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
         return false;
     }
+    public boolean addSectionData(SectionTable sectionTable)
+    {
+        try {
+            SectionTable keySection = new SectionTable();
+            SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(keySection.getName(),sectionTable.getName());
+            contentValues.put(keySection.getMgr_id(),sectionTable.getMgr_id());
+            sqLiteDatabase.insert(keySection.getTableName(), null, contentValues);
+            return true;
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return false;
+    }
     public boolean addCustomerData(CustomerTable customerTable)
     {
         try {
@@ -102,13 +121,73 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
         return false;
     }
+    public boolean addSupplierDetails(SupplierTable supplierTable) {
+        try {
+            SupplierTable keySupplierTable = new SupplierTable();
+            SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(keySupplierTable.getSupp_id(), supplierTable.getSupp_id());
+            contentValues.put(keySupplierTable.getFname(), supplierTable.getFname());
+            contentValues.put(keySupplierTable.getLname(), supplierTable.getLname());
+            contentValues.put(keySupplierTable.getMobile(), supplierTable.getMobile());
+            contentValues.put(keySupplierTable.getEmail(), supplierTable.getEmail());
+            contentValues.put(keySupplierTable.getAddress(), supplierTable.getAddress());
+            sqLiteDatabase.insert(keySupplierTable.getTableName(),null, contentValues);
+            return true;
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
+
+
+
+
+
 
     //Display data :
-    public Cursor getDataFromCustomerTable()
+    public Cursor getDataFromCustomerTable()        //only create getdata for customer no need to create other getdata table
     {
         SQLiteDatabase sqLiteDatabase=getReadableDatabase();
         return sqLiteDatabase.rawQuery("SELECT * FROM customer",null);
+    }                                                      //as below i have generalized getdata from table
+    //General Select * from  Table function
+    public Cursor getDataFromTable(String tablename)
+    {
+        SQLiteDatabase sqLiteDatabase=getReadableDatabase();
+        return sqLiteDatabase.rawQuery("SELECT * FROM "+tablename,null);
+    }
+    //General Select * from Table WHERE function
+    public Cursor getDataFromTable(String tablename,String where_clause)
+    {
+        SQLiteDatabase sqLiteDatabase=getWritableDatabase();
+        return sqLiteDatabase.rawQuery("SELECT * FROM "+tablename+" "+where_clause,null);
     }
 
+
+    //populate data :
+    public boolean populateTable(Context context)
+    {
+        DataBaseHelper dataBaseHelper=DataBaseHelper.getInstance(context);
+        //populating section table
+        SectionTable sectionTable=new SectionTable("Stationary","");
+        if(!dataBaseHelper.addSectionData(sectionTable))
+        {
+            return  false;
+        }
+       //populating employee table
+
+        EmployeeTable employeeTable=new EmployeeTable("Sanjay","Sharma","sanjay@gmail.com","7859857869","siyaganj","M","450000","","1");
+        if(!dataBaseHelper.addEmployeeData(employeeTable))
+        {
+            return false;
+        }
+
+        return true;
+    }
 
 }

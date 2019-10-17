@@ -2,7 +2,9 @@ package com.mansoor.supermarketmanagement;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +20,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button mpayment;
     private Button memployee;
     private Button mcustomer;
+    private Button mpopulateTable;
+    private Button mlogout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +32,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         memployee.setOnClickListener(this);
         mcustomer=findViewById(R.id.main_customer_button);
         mcustomer.setOnClickListener(this);
+        mpopulateTable=findViewById(R.id.main_populate_table);
+        mpopulateTable.setOnClickListener(this);
+        mlogout=findViewById(R.id.main_logout);
+        mlogout.setOnClickListener(this);
 
         /*DataBaseHelper dataBaseHelper=DataBaseHelper.getInstance(this);
         PaymentTable paymentTable=new PaymentTable("electonic");
@@ -56,8 +64,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent =new Intent(this, CustomerLoginActivity.class);
             startActivity(intent);
         }
-
-
-
+        //Populating Table with initial data
+        if(view.getId()==mpopulateTable.getId())
+        {
+            dataBaseHelper=DataBaseHelper.getInstance(this);
+            if(dataBaseHelper.populateTable(this))
+                Toast.makeText(this,"Table populated successfully",Toast.LENGTH_SHORT).show();
+            else
+                Toast.makeText(this,"Table populated successfully",Toast.LENGTH_SHORT).show();
+        }
+        if(view.getId()==mlogout.getId())
+        {
+            SharedPreferences sharedPreferences=getSharedPreferences("supermarket", Context.MODE_PRIVATE);
+            sharedPreferences.edit().clear().commit();
+            Toast.makeText(this,"Logout Successfull",Toast.LENGTH_SHORT).show();
+        }
     }
 }
