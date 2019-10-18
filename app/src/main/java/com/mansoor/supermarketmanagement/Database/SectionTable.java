@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 public class SectionTable {
     private String tableName="section";
     private String name="name";
-    private String sec_id="table_name";
+    private String sec_id="sec_id";
     private String mgr_id="mgr_id";
 
     public SectionTable()
@@ -26,6 +26,10 @@ public class SectionTable {
         this.mgr_id=mgr_id;
         this.name = name;
     }
+    /*public SectionTable(String name)
+    {
+        this.name=name;
+    }*/
 
     public String getTableName() {
         return tableName;

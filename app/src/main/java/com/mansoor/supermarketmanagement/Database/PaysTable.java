@@ -17,7 +17,7 @@ public class PaysTable {
                 "cus_id INTEGER REFERENCES customer(cus_id) ON DELETE CASCADE ON UPDATE CASCADE," +
                 "payment_id INTEGER  REFERENCES payment(payment_id) ON DELETE CASCADE ON UPDATE CASCADE," +
                 "cart_id INTEGER  REFERENCES shopping_cart(cart_id) ON DELETE CASCADE ON UPDATE CASCADE," +
-                "PRIMARY KEY(cus_id,payment_id,cart_id)" +
+                "PRIMARY KEY(cus_id,cart_id)" +
                 ");";
         sqLiteDatabase.execSQL(sql);
     }

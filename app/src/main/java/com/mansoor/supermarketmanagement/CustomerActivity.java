@@ -45,13 +45,13 @@ public class CustomerActivity extends AppCompatActivity implements View.OnClickL
             CustomerTable customerTable=new CustomerTable(mfname.getText().toString(),mlname.getText().toString(),memail.getText().toString(),mpassword.getText().toString(),mmobile.getText().toString(),mdob.getText().toString(),mgender.getText().toString());
             if(dataBaseHelper.addCustomerData(customerTable))
             {
-                Toast.makeText(this, "Employee Details added successfull!!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Customers Details added successfull!!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this,MainActivity.class);
                 startActivity(intent);
                 finish();
             }
             else
-                Toast.makeText(this,"Error is storing employee details",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"Error is storing customer details",Toast.LENGTH_SHORT).show();
         }
 
     }

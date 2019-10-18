@@ -96,11 +96,30 @@
                 android:layout_height="wrap_content"
                 android:text="Product Description"/>
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/product_info_linear9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/product_info_linear4"
+            android:layout_marginBottom="20dp">
+            <TextView
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:text="Quantity:"
+                android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/product_info_quantity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="1"/>
+        </LinearLayout>
+
         <Button
             android:id="@+id/product_info_buyproduct_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/product_info_linear4"
+            android:layout_below="@id/product_info_linear9"
             android:layout_centerHorizontal="true"
             android:text="Add to Cart"
             android:layout_marginTop="40dp"/>

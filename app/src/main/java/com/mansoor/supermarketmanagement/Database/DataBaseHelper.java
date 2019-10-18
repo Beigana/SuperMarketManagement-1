@@ -105,7 +105,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
             ContentValues contentValues = new ContentValues();
             contentValues.put(keySection.getName(),sectionTable.getName());
-            contentValues.put(keySection.getMgr_id(),sectionTable.getMgr_id());
+           //if(!sectionTable.getMgr_id().toLowerCase().equals("null"))
+
+                contentValues.put(keySection.getMgr_id(),sectionTable.getMgr_id());
+
             sqLiteDatabase.insert(keySection.getTableName(), null, contentValues);
             return true;
         }
@@ -261,6 +264,41 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return false;
     }
 
+    public boolean addStockData(StockTable stockTable) {
+        try {
+            StockTable keyStocktable = new StockTable();
+            SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(keyStocktable.getName(), stockTable.getName());
+            contentValues.put(keyStocktable.getQuantity(), stockTable.getQuantity());
+            contentValues.put(keyStocktable.getSec_id(), stockTable.getSec_id());
+            sqLiteDatabase.insert(keyStocktable.getTable_name(), null, contentValues);
+            return true;
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public boolean addProductData(ProductTable productTable) {
+        try {
+            ProductTable keyProductTable = new ProductTable();
+            SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(keyProductTable.getName(), productTable.getName());
+            contentValues.put(keyProductTable.getPrice(), productTable.getPrice());
+            contentValues.put(keyProductTable.getStock_id(),productTable.getStock_id());
+            contentValues.put(keyProductTable.getDescription(), productTable.getDescription());
+            sqLiteDatabase.insert(keyProductTable.getTableName(), null, contentValues);
+            return true;
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 
 
 
@@ -288,6 +326,26 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
 
+    //General Updata Table :
+    public boolean updateTableData(String sql)
+    {
+        try {
+            SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+            sqLiteDatabase.execSQL(sql);
+
+            /*ContentValues contentValues = new ContentValues();
+            contentValues.put(keyCheckAvailability.getStock_id(), checkAvailabilityTable.getStock_id());
+            contentValues.put(keyCheckAvailability.getCart_id(), checkAvailabilityTable.getCart_id());
+            sqLiteDatabase.insert(keyCheckAvailability.getTableName(), null, contentValues);*/
+            return true;
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
     //populate data :
     public boolean populateTable(Context context)
     {
@@ -300,21 +358,19 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         if(!dataBaseHelper.addSupplierData(new SupplierTable("Surjeet","Patel","surjeet@gmail.com","Lucknow","9858785896","qwerty3")))
             return  false;
         //populating section table
-        SectionTable sectionTable=new SectionTable("Stationary","");
+        SectionTable sectionTable=new SectionTable("Stationary",null);      //section_id=1
         if(!dataBaseHelper.addSectionData(sectionTable))
-        {
             return  false;
-        }
-        if(!dataBaseHelper.addSectionData(new SectionTable("Garments","")))     //section_id=2
+        if(!dataBaseHelper.addSectionData(new SectionTable("Garments",null)))     //section_id=2
             return  false;
-        if(!dataBaseHelper.addSectionData(new SectionTable("Laptops","1")))     //section_id=3
-            return  false;
-        if(!dataBaseHelper.addSectionData(new SectionTable("Mobiles","4")))     //section_id=4
+        if(!dataBaseHelper.addSectionData(new SectionTable("Laptops",null)))     //section_id=3
             return  false;
 
+        if(!dataBaseHelper.addSectionData(new SectionTable("Mobiles",null)))     //section_id=4
+            return  false;
 
        //populating employee table
-        EmployeeTable employeeTable=new EmployeeTable("Sanjay","Sharma","sanjay@gmail.com","7859857869","Indore","M","450000","","1");
+        EmployeeTable employeeTable=new EmployeeTable("Sanjay","Sharma","sanjay@gmail.com","7859857869","Indore","M","450000",null,"1");
         if(!dataBaseHelper.addEmployeeData(employeeTable))
         {
             return false;
@@ -323,20 +379,52 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         {
             return false;
         }
-        if(!dataBaseHelper.addEmployeeData(new EmployeeTable("Shilpa","Agarwal","shilpa123@gmail.com","8597858964","Mumbai","F","750000","","2")))
+        if(!dataBaseHelper.addEmployeeData(new EmployeeTable("Shilpa","Agarwal","shilpa123@gmail.com","8597858964","Mumbai","F","750000",null,"2")))
         {
             return false;
         }
 
-        if(!dataBaseHelper.addEmployeeData(new EmployeeTable("Malini","Roy","malini198@gmail.com","85895652589","Indore","F","758000","","4")))
+        if(!dataBaseHelper.addEmployeeData(new EmployeeTable("Malini","Roy","malini198@gmail.com","85895652589","Indore","F","758000",null,"4")))
         {
             return false;
         }
-        if(!dataBaseHelper.addPaysData(new PaysTable("1","1","1")))
-            return false;
+        dataBaseHelper.updateTableData(" update section set mgr_id=1 where sec_id=3;");
+        dataBaseHelper.updateTableData(" update section set mgr_id=4 where sec_id=4;");
 
         //populating stock table
+        if(!dataBaseHelper.addStockData(new StockTable("Natraj Sparkle Pen","200","1")))
+            return false;
+        if(!dataBaseHelper.addStockData(new StockTable("Reynolds Max INK","50","1")))
+            return false;
+        if(!dataBaseHelper.addStockData(new StockTable("Samasung Galaxy J7 MAX","13","4")))
+            return false;
+        if(!dataBaseHelper.addStockData(new StockTable("HP G79090","11","3")))
+            return false;
+
+        //populating Product table
+        for(int i=0;i<200;i++)
+        {
+            if(!dataBaseHelper.addProductData(new ProductTable("Natraj Sparkle Pen","25","1","Ball pen")))
+                return false;
+        }
+        for(int i=0;i<50;i++)
+        {
+            if(!dataBaseHelper.addProductData(new ProductTable("Reynolds Max INK","20","2","Ball pen Reynolds")))
+                return false;
+        }
+        for(int i=0;i<13;i++)
+        {
+            if(!dataBaseHelper.addProductData(new ProductTable("Samasung Galaxy J7 MAX","15000","4","Samsung Mobile")))
+                return false;
+        }
+        for(int i=0;i<11;i++)
+        {
+            if(!dataBaseHelper.addProductData(new ProductTable("HP G79090","15000","3","HP Laptop")))
+                return false;
+        }
+
+
+
         return true;
     }
-
 }

@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mansoor.supermarketmanagement.Database.ProductTable;
+import com.mansoor.supermarketmanagement.ProductInfoActivity;
 import com.mansoor.supermarketmanagement.R;
 import com.mansoor.supermarketmanagement.Utility.MyAdapterUtility;
 
@@ -55,7 +56,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
         final String product_description;*/
        final String stock_id;
        String stock_name;
-        //if(flag==0) {
             cursor.moveToPosition(i);
             /*product_id = cursor.getString(0);
             product_name = cursor.getString(1);
@@ -64,13 +64,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
             stock_id=cursor.getString(0);
             stock_name=cursor.getString(1);
             viewHolder.mproduct_name.setText(stock_name);
-        //}
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //ProductTable productTable=new ProductTable(product_name,product_price,product_description);
                 //productTable.setProduct_id(product_id);
-                Intent intent = new Intent(context, DriverPropertyInfo.class);
+                Intent intent = new Intent(context, ProductInfoActivity.class);
                 //intent.putExtra("PropertyTable_object",propertyTableData);
                 new MyAdapterUtility(stock_id);
                 context.startActivity(intent);
@@ -80,7 +79,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
 
     @Override
     public int getItemCount() {
-        return 0;
+        return cursor.getCount();
     }
 
     public  class ViewHolder extends RecyclerView.ViewHolder {

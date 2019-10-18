@@ -4,10 +4,10 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class ProductTable {
     private String tableName="product";
+    private String product_id="product_id";
     private String name="name";
     private String price="price";
-    private String stock_id="table_name";
-    private String product_id="ta";
+    private String stock_id="stock_id";
     private String description="description";
 
     public ProductTable()
@@ -18,16 +18,17 @@ public class ProductTable {
     {
         String sql ="CREATE TABLE "+tableName+"("+
                 product_id+" INTEGER PRIMARY KEY AUTOINCREMENT,"+
-                name+" VARCHAR(20) UNIQUE REFERENCES stock_table(name) ON DELETE CASCADE ON UPDATE CASCADE,"+
+                name+" VARCHAR(20)  REFERENCES stock(name) ON DELETE CASCADE ON UPDATE CASCADE,"+
                 price+" FLOAT CHECK(price>=0) NOT NULL,"+
-                stock_id+" INTEGER(6) REFERENCES stock_table(stock_id) ON DELETE CASCADE ON UPDATE CASCADE,"+
+                stock_id+" INTEGER(6) REFERENCES stock(stock_id) ON DELETE CASCADE ON UPDATE CASCADE,"+
                 description+" VARCHAR(100)"+ ");";
         sqLiteDatabase.execSQL(sql);
     }
 
-    public ProductTable(String name, String price, String description) {
+    public ProductTable(String name, String price,String stock_id,String description) {
         this.name = name;
         this.price = price;
+        this.stock_id=stock_id;
         this.description = description;
     }
 

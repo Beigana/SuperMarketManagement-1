@@ -7,7 +7,7 @@ public class StockTable {
     private String stock_id="stock_id";
     private String name="name";
     private String quantity="quantity";
-    private String section_table="section_table";
+    //private String section_table="section_table";
     private String sec_id="sec_id";
 
     public StockTable()
@@ -25,10 +25,11 @@ public class StockTable {
         sqLiteDatabase.execSQL(sql);
     }
 
-    public StockTable(String name, String quantity, String section_table) {
+    public StockTable(String name, String quantity,String sec_id) {
         this.name = name;
         this.quantity = quantity;
-        this.section_table = section_table;
+        this.sec_id=sec_id;
+        //this.section_table = section_table;
     }
 
     public String getTable_name() {
@@ -47,21 +48,11 @@ public class StockTable {
         return quantity;
     }
 
-    public String getSection_table() {
-        return section_table;
-    }
 
     public String getSec_id() {
         return sec_id;
     }
 
-    public void setTable_name(String table_name) {
-        this.table_name = table_name;
-    }
-
-    public void setStock_id(String stock_id) {
-        this.stock_id = stock_id;
-    }
 
     public void setName(String name) {
         this.name = name;
@@ -71,11 +62,9 @@ public class StockTable {
         this.quantity = quantity;
     }
 
-    public void setSection_table(String section_table) {
-        this.section_table = section_table;
-    }
 
     public void setSec_id(String sec_id) {
         this.sec_id = sec_id;
     }
+
 }

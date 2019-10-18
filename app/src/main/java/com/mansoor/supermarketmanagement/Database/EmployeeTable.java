@@ -47,6 +47,18 @@ public class EmployeeTable {
         this.super_id = super_id;
         this.sec_id = sec_id;
     }
+    /*public EmployeeTable(String fname, String lname, String email, String mobile, String address, String gender, String salary,String sec_id)
+    {
+        this.fname = fname;
+        this.lname = lname;
+        this.email = email;
+        this.mobile = mobile;
+        this.address = address;
+        this.gender = gender;
+        this.salary = salary;
+        //this.super_id = super_id;
+        this.sec_id = sec_id;
+    }*/
 
     public String getTableName() {
         return tableName;
