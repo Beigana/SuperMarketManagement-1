@@ -34,11 +34,26 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         new PaymentTable(sqLiteDatabase);            //Create table payment
         new CustomerTable(sqLiteDatabase);
+        new ShoppingCartTable(sqLiteDatabase);
+        new PaysTable(sqLiteDatabase);
         new EmployeeTable(sqLiteDatabase);
         new SectionTable(sqLiteDatabase);
         new StockTable(sqLiteDatabase);
         new ProductTable(sqLiteDatabase);
         new SupplierTable(sqLiteDatabase);
+        new CheckAvailabilityTable(sqLiteDatabase);
+        new ContainsTable(sqLiteDatabase);
+        new PurchaseReqTable(sqLiteDatabase);
+        new SellsTable(sqLiteDatabase);
+
+    }
+    @Override
+    public void onOpen(SQLiteDatabase db) {
+        super.onOpen(db);
+        if (!db.isReadOnly()) {
+            // Enable foreign key constraints
+            db.execSQL("PRAGMA foreign_keys=ON;");
+        }
     }
 
     @Override
@@ -142,6 +157,117 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
         return false;
     }
+    public boolean addShoppingData(ShoppingCartTable shoppingCartTable) {
+        try {
+            ShoppingCartTable keyShoppingCart = new ShoppingCartTable();
+            SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+
+            ContentValues contentValues = new ContentValues();
+            //contentValues.put(keyShoppingCart.getCart_id(), shoppingCartTable.getCart_id());
+            contentValues.put(keyShoppingCart.getDiscount(), shoppingCartTable.getDiscount());
+            sqLiteDatabase.insert(keyShoppingCart.getTableName(),null, contentValues);
+            return true;
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean addPaysData(PaysTable paysTable) {
+        try {
+            PaysTable keyPaysTable = new PaysTable();
+            SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(keyPaysTable.getCus_id(), paysTable.getCus_id());
+            contentValues.put(keyPaysTable.getPayment_id(), paysTable.getPayment_id());
+            contentValues.put(keyPaysTable.getCart_id(), paysTable.getCart_id());
+            sqLiteDatabase.insert(keyPaysTable.getTableName(),null, contentValues);
+            return true;
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public boolean addPurchaseReqData(PurchaseReqTable purchaseReqTable) {
+        try {
+            PurchaseReqTable keyPurchaseReqTable1 = new PurchaseReqTable();
+            SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(keyPurchaseReqTable1.getSupp_id(), purchaseReqTable.getSupp_id());
+            contentValues.put(keyPurchaseReqTable1.getSec_id(), purchaseReqTable.getSec_id());
+            contentValues.put(keyPurchaseReqTable1.getQuantitiy(), purchaseReqTable.getQuantitiy());
+            sqLiteDatabase.insert(keyPurchaseReqTable1.getTableName(), null, contentValues);
+            return true;
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean addSellsData(SellsTable sells) {
+        try {
+            SellsTable keySells = new SellsTable();
+            SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(keySells.getSupp_id(), sells.getSupp_id());
+            contentValues.put(keySells.getStock_id(), sells.getStock_id());
+            sqLiteDatabase.insert(keySells.getTableName(), null, contentValues);
+            return true;
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public boolean addContainsData(ContainsTable containsTable) {
+        try {
+            ContainsTable keyContainsTable = new ContainsTable();
+            SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(keyContainsTable.getProduct_id(), containsTable.getProduct_id());
+            contentValues.put(keyContainsTable.getCart_id(), containsTable.getCart_id());
+            contentValues.put(keyContainsTable.getQuantity(), containsTable.getQuantity());
+
+            sqLiteDatabase.insert(keyContainsTable.getTableName(), null, contentValues);
+            return true;
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public boolean addCheckAvailabilityData(CheckAvailabilityTable checkAvailabilityTable) {
+        try {
+            CheckAvailabilityTable keyCheckAvailability = new CheckAvailabilityTable();
+            SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(keyCheckAvailability.getStock_id(), checkAvailabilityTable.getStock_id());
+            contentValues.put(keyCheckAvailability.getCart_id(), checkAvailabilityTable.getCart_id());
+
+            sqLiteDatabase.insert(keyCheckAvailability.getTableName(), null, contentValues);
+            return true;
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
+
+
+
+
+
+
     //Display data :
     public Cursor getDataFromCustomerTable()        //only create getdata for customer no need to create other getdata table
     {
@@ -206,12 +332,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         {
             return false;
         }
+        if(!dataBaseHelper.addPaysData(new PaysTable("1","1","1")))
+            return false;
 
         //populating stock table
-
-
-
-
         return true;
     }
 
